@@ -1,0 +1,39 @@
+extends layout
+block content
+    -if (!loginStatus)
+        button(type="button" onclick=`location.href='/login/${content.pageNum}'`) 로그인
+        button(type="button" onclick=`location.href='/register/${content.pageNum}'`) 회원가입
+    -else
+        h2 환영합니다 #{nickname} 님
+        button(type="button" onclick=`location.href='/logout/${content.pageNum}'`) 로그아웃
+    
+    h1 #{content.title}
+    h4 작성자: #{content.nickname}
+    br
+    h3 #{content.desc}
+    br
+    h3 #{content.date}
+    br
+    button(onclick=`location.href="/"`) 홈으로
+
+    -if (nickname === content.nickname)
+        button(onclick=`location.href="/update/${content.pageNum}"`) 수정하기
+        button(onclick=`location.href="/delete/${content.pageNum}"`) 삭제하기
+
+    -if (loginStatus)
+        br
+        br
+        form(action=`/comment/${content.pageNum}/${nickname}` method="post")
+            input(type="text" name="comment" placeholder="댓글내용" maxlength="100" required style="width:300px")
+            button(type="submit") 댓글쓰기!
+    
+    ul
+    -for (i = 0; i < comment.length; i++)
+        -if (nickname === comment[i].nickname)
+            h4 #{comment[i].nickname}
+            p #{comment[i].comment}
+            button(onclick=`location.href="/update_comment/${content.pageNum}/${comment[i]._id}/${nickname}"`) 수정
+            button(onclick=`location.href="/del_cmt_confirm/${content.pageNum}/${comment[i]._id}"`) 삭제
+        -else
+            h4 #{comment[i].nickname}
+            p #{comment[i].comment}

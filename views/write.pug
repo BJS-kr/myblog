@@ -1,0 +1,16 @@
+extends layout
+block content
+  h1 글쓰기
+  form(action=`/write/${nickname}` method="post") 
+    table
+      tr
+        th 제목
+        td
+          input(type="text" name="title" placeholder="제목" maxlength="100" required style="width:300px")
+      tr 
+        th 내용
+        td
+          textarea(name="desc" placeholder="내용" maxlength="100" required style="width:300px;height:200px;font-size:13px;padding:5px;resize:none")
+    br
+    button(type="submit") 작성완료
+    button(onclick=`location.href="/"`) 취소

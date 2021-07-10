@@ -1,0 +1,15 @@
+extends layout
+block content
+  h1 수정하기
+  form(action=`/update/${content.pageNum}` method="post") 
+    table
+      tr
+        th 제목
+        td
+          input(type="text" name="title" value=content.title maxlength="100" required style="width:300px" )
+      tr 
+        th 내용
+        td
+          textarea(name="desc" maxlength="100" required style="width:300px;height:200px;font-size:13px;padding:5px;resize:none;") #{content.desc}
+    button(type="submit") 수정완료
+    button(onclick=`location.href="/detail/${content.pageNum}"`) 취소

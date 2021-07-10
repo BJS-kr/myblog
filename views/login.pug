@@ -1,0 +1,34 @@
+extends layout
+block content
+  h1 로그인
+  -if (pageNum)
+    form(action=`/logina/${pageNum}` method="post") 
+      table
+        tr
+          th 닉네임
+          td
+            input(type="text" name="nickname" placeholder="닉네임"  required )
+        tr 
+          th 비밀번호
+          td
+            input(type="password" name="pw" placeholder="비밀번호"  required )
+      br
+      button(type="submit") 로그인
+  -else
+    form(action="/logina" method="post") 
+      table
+        tr
+          th 닉네임
+          td
+            input(type="text" name="nickname" placeholder="닉네임"  required )
+        tr 
+          th 비밀번호
+          td
+            input(type="password" name="pw" placeholder="비밀번호"  required )
+      br
+      button(type="submit") 로그인
+  
+  -if (pageNum)
+    button(onclick=`location.href="/detail/${pageNum}"`) 취소
+  -else
+    button(onclick=`location.href="/"`) 취소

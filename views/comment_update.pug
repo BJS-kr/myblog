@@ -1,0 +1,26 @@
+extends layout
+block content
+    
+    h2 환영합니다 #{nickname} 님
+    button(type="button" onclick="location.href='/logout'") 로그아웃
+    
+    h1 #{content.title}
+    br
+    h4 #{content.nickname}
+    br
+    h3 #{content.desc}
+    br
+    h3 #{content.date}
+
+    h5 #{nickname}
+    form(action=`/update_comment/${content.pageNum}/${id}/${nickname}` method="post")
+        input(type="text" name="comment" value=`${targetComment}` placeholder="댓글내용" maxlength="100" required style="width:300px")
+        button(type="submit") 댓글수정!
+        button(onclick=`location.href="/detail/${content.pageNum}"`) 취소
+  
+    ul
+    -for (i = 0; i < comment.length; i++)
+        -if (`${id}` !== `${comment[i]._id}`)
+            h4 #{comment[i].nickname}
+            p #{comment[i].comment}
+        

@@ -1,0 +1,39 @@
+extends layout
+block content
+  h1 회원가입
+  -if (pageNum)
+    form(action=`/registera/${pageNum}` method="post") 
+      table
+        tr
+          th 닉네임
+          td
+            input(type="text" name="nickname" placeholder="닉네임"  required )
+        tr 
+          th 비밀번호
+          td
+            input(type="password" name="pw" placeholder="비밀번호"  required )
+        tr 
+          th 비밀번호 확인
+          td
+            input(type="password" name="re_pw" placeholder="비밀번호 확인" required )
+      br
+      button(type="submit") 가입신청
+      button(type="button" onclick=`location.href='/detail/${pageNum}'`) 취소
+  -else
+    form(action="/registera" method="post") 
+      table
+        tr
+          th 닉네임
+          td
+            input(type="text" name="nickname" placeholder="닉네임"  required )
+        tr 
+          th 비밀번호
+          td
+            input(type="password" name="pw" placeholder="비밀번호"  required )
+        tr 
+          th 비밀번호 확인
+          td
+            input(type="password" name="re_pw" placeholder="비밀번호 확인" required )
+      br
+      button(type="submit") 가입신청
+      button(type="button" onclick="location.href='/'") 취소

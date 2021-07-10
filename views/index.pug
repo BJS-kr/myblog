@@ -1,0 +1,32 @@
+extends layout
+block content
+  h1= title
+    p Node.JeongSeop's blog
+  h3 ※자신이 쓴 글, 댓글에만 수정 및 삭제버튼이 활성화 됩니다※
+    -if (!loginStatus)
+      br
+      br
+      button(type="button" onclick="location.href='/login'") 로그인
+      button(type="button" onclick="location.href='/register'") 회원가입
+
+    -else
+      br
+      h2 환영합니다 #{nickname} 님
+      button(type="button" onclick="location.href='/logout'") 로그아웃
+      br
+      br
+      button(type="button" onclick=`location.href='/write/${nickname}'`) 글쓰기
+    
+    ul 
+    -for (i = 0; i < list.length; i++)
+      -if (list[i].title.slice(0,3) === '(공지)')
+        a(href=`/detail/${list[i]['pageNum']}`) #{list[i]['title']}
+        br
+    br
+    br
+    ul 
+    -for (i = 0; i < list.length; i++)
+      -if (list[i].title.slice(0,3) !== '(공지)')
+        a(href=`/detail/${list[i]['pageNum']}`) #{list[i]['title']}
+        br
+    
